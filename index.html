@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All The Fishes</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js"></script>  
+
+</head>
+<body>
+
+    <script>
+
+        //The App
+        const app = new PIXI.Application({
+            width:1000,
+            height:1000,
+            backgroundColor:0xCCCCCC
+        });
+
+        //Give us the view
+        document.body.appendChild(app.view);
+
+        //Our fish
+        const my_sprite = PIXI.Sprite.from("img/fish.png");
+            my_sprite.scale.set(.5);
+            my_sprite.x = 250;
+            my_sprite.y = 250;
+            my_sprite.scale.set(.3);
+            my_sprite.tint = 0x00ff00;
+            my_sprite.anchor.set(.9,0);
+            my_sprite.angle = 37;
+
+        //Add it to the stage
+        app.stage.addChild(my_sprite);
+
+        //Our Second Fish
+        const my_sprite2 = PIXI.Sprite.from("img/fish2.png");
+            my_sprite2.scale.set(.5);
+            my_sprite2.x = 340;
+            my_sprite2.y = 100;
+            my_sprite2.scale.set(-.2, -.3);
+            my_sprite2.tint = 0xffa500;
+            my_sprite2.anchor.set(.9,0);
+            my_sprite2.angle = 150;
+            
+        //Add it to the stage
+        app.stage.addChild(my_sprite2);
+
+        //Our Third Fish
+        const my_sprite3 = PIXI.Sprite.from("img/fish3.png");
+        my_sprite3.scale.set(-.3);
+        my_sprite3.x = 500;
+        my_sprite3.y = 300;
+            my_sprite3.scale.set(-.2,-.3);
+            my_sprite3.tint = 0xee82ee;
+            my_sprite3.anchor.set(.9,-1);
+            my_sprite3.angle = 150;
+
+        //Add it to the stage
+        app.stage.addChild(my_sprite3);
+
+        //Create fish container
+        const my_container = new PIXI.Container();
+
+        //Add conatainer to stage
+        app.stage.addChild(my_container);
+
+        //Add fish to container 
+        my_container.addChild(my_sprite);
+        my_container.addChild(my_sprite2);
+        my_container.addChild(my_sprite3);
+
+        let loop = () => {
+
+            let yfloat = 200;
+
+            let time = Date.now();
+            let orange = Math.sin(time/900)*200;
+            my_sprite.y = orange;
+
+            let green = Math.sin(time/500)*400;
+            my_sprite2.y = green;
+
+            let purple = Math.sin(time/650)*500;
+            my_sprite3.x = purple;
+
+            // let time = Date.now();
+            // my_container.y = Math.sin(time/900) * 200;
+
+            // let sprite = Math.sin(time/24)
+            // my_sprite.scale.set(.5+(.005*flipper),.5);
+
+            // let sprite2 = Math.sin(time/31)
+            // my_sprite2.scale.set(-.5+(.005*flipper),.5);
+
+            // let rotate = Math.sin(time/900)**2 *10;
+            // my_sprite.angle = rotate;
+
+            requestAnimationFrame(loop);
+        };
+
+        loop();
+
+    </script>
+    
+</body>
+</html>

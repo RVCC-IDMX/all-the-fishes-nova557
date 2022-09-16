@@ -15,7 +15,7 @@
 
         //The App
         const app = new PIXI.Application({
-            width:1000,
+            width:900,
             height:1000,
             backgroundColor:0xCCCCCC
         });
@@ -75,10 +75,11 @@
 
         let loop = () => {
 
-            let yfloat = 200;
+            // let yfloat = 200;
 
             let time = Date.now();
-            let orange = Math.sin(time/900)*200;
+            my_container.y = Math.sin(time/900) * 200;
+            let orange = Math.sin(time/900)*500;
             my_sprite.y = orange;
 
             let green = Math.sin(time/500)*400;

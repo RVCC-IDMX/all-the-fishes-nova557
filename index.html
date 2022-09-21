@@ -4,26 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>All The Fishes</title>
+    <style>
+        body {
+            background-image: url("img fish bowl.png");
+        }
+    </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js"></script>  
 
 </head>
+
 <body>
 
     <script>
 
         //The App
         const app = new PIXI.Application({
-            width:900,
-            height:1000,
-            backgroundColor:0xCCCCCC
+            width:2500,
+            height:1400,
+            backgroundColor:0x00a5ff
         });
 
         //Give us the view
         document.body.appendChild(app.view);
 
-        //Our fish
+        //Our fish: Sprite1
         const my_sprite = PIXI.Sprite.from("img/fish.png");
             my_sprite.scale.set(.5);
             my_sprite.x = 250;
@@ -36,7 +43,7 @@
         //Add it to the stage
         app.stage.addChild(my_sprite);
 
-        //Our Second Fish
+        //Our Second Fish: Sprite2
         const my_sprite2 = PIXI.Sprite.from("img/fish2.png");
             my_sprite2.scale.set(.5);
             my_sprite2.x = 340;
@@ -49,11 +56,11 @@
         //Add it to the stage
         app.stage.addChild(my_sprite2);
 
-        //Our Third Fish
+        //Our Third Fish: Sprite3
         const my_sprite3 = PIXI.Sprite.from("img/fish3.png");
         my_sprite3.scale.set(-.3);
-        my_sprite3.x = 500;
-        my_sprite3.y = 300;
+        my_sprite3.x = 200;
+        my_sprite3.y = 700;
             my_sprite3.scale.set(-.2,-.3);
             my_sprite3.tint = 0xee82ee;
             my_sprite3.anchor.set(.9,-1);
@@ -62,6 +69,92 @@
         //Add it to the stage
         app.stage.addChild(my_sprite3);
 
+        // Bubbles3: Sprite4
+        const my_sprite4 = PIXI.Sprite.from("img/leafs.png");
+        my_sprite4.scale.set(0);
+        my_sprite4.x = 900;
+        my_sprite4.y = 600;
+            my_sprite4.scale.set(-.1,-.5);
+            my_sprite4.tint = 0xee82ee;
+            my_sprite4.anchor.set(-.12,1);
+            my_sprite4.angle = 300;
+
+        //Add Bubbles to the Stage
+        app.stage.addChild(my_sprite4);
+
+        //4th Fish: Sprite5
+        const my_sprite5 = PIXI.Sprite.from("img/fish4.png");
+        my_sprite5.scale.set(-.1);
+        my_sprite5.x = 800;
+        my_sprite5.y = 500;
+        my_sprite5.scale.set(-.9,-.3);
+        my_sprite5.tint = 0xee82ee;
+        my_sprite5.anchor.set(-.10,-1);
+        my_sprite5.angle = 200;
+        my_sprite5.width = 700;
+        my_sprite5.height = 500;
+
+        //Add it to the stage
+        app.stage.addChild(my_sprite5);
+
+        //5th Fish: Sprite6
+        const my_sprite6 = PIXI.Sprite.from("img/fish5.png");
+        my_sprite6.scale.set(-.6);
+        my_sprite6.x = 20;
+        my_sprite6.y = 100;
+        my_sprite6.scale.set(-.6,-.3);
+        my_sprite6.tint = 0xee82ee;
+        my_sprite6.anchor.set(-.10,1);
+        my_sprite6.angle = 200;
+
+        //Add it to the stage
+        app.stage.addChild(my_sprite6);
+
+        //Fish Bowl: Sprite7
+        const my_sprite7 = PIXI.Sprite.from("img/fishbowl2.png");
+        my_sprite7.scale.set(0);
+        my_sprite7.x = 20;
+        my_sprite7.y = 100;
+        my_sprite7.scale.set(-.900,-.900);
+        my_sprite7.anchor.set(.1000,.3000);
+        my_sprite7.angle = 190;
+        my_sprite7.width = 7000;
+        my_sprite7.height = 5000;
+
+        //Add it to the stage
+        app.stage.addChild(my_sprite7);
+
+         //Bubbles: Sprite8
+        const my_sprite8 = PIXI.Sprite.from("img/bubbles.png");
+        my_sprite8.scale.set(-.1);
+        my_sprite8.x = 800;
+        my_sprite8.y = 500;
+        my_sprite8.scale.set(-.8,-.3);
+        my_sprite8.tint = 0xee82ee;
+        my_sprite8.anchor.set(-.11,.1);
+        my_sprite8.angle = 10;
+        my_sprite8.width = 1000;
+        my_sprite8.height = 500;
+
+
+        //Add it to the stage
+        app.stage.addChild(my_sprite8);
+
+        //Bubbles2: Sprite9
+        const my_sprite9 = PIXI.Sprite.from("img/bubbles2.png");
+        my_sprite9.scale.set(-.1);
+        my_sprite9.x = 1000;
+        my_sprite9.y = 500;
+        my_sprite9.scale.set(-.10,-.5);
+        my_sprite9.anchor.set(-.11,.1);
+        my_sprite9.tint = 0x00b2ff;
+        my_sprite9.angle = 200;
+        my_sprite9.width = 700;
+        my_sprite9.height = 500;
+
+        //Add it to the stage
+        app.stage.addChild(my_sprite9);
+        
         //Create fish container
         const my_container = new PIXI.Container();
 
@@ -72,6 +165,12 @@
         my_container.addChild(my_sprite);
         my_container.addChild(my_sprite2);
         my_container.addChild(my_sprite3);
+        // my_container.addChild(my_sprite4);
+        my_container.addChild(my_sprite5);
+        my_container.addChild(my_sprite6);
+        my_container.addChild(my_sprite7);
+        my_container.addChild(my_sprite8);
+        my_container.addChild(my_sprite9);
 
         let loop = () => {
 
@@ -79,14 +178,24 @@
 
             let time = Date.now();
             my_container.y = Math.sin(time/900) * 200;
-            let orange = Math.sin(time/900)*500;
-            my_sprite.y = orange;
+            let orange = Math.sin(time/900+200)*500;
+            my_sprite.x = orange;
 
-            let green = Math.sin(time/500)*400;
+            let green = Math.sin(time/650+30)*500;
             my_sprite2.y = green;
 
-            let purple = Math.sin(time/650)*500;
+            let purple = Math.sin(time/650+30)*500;
             my_sprite3.x = purple;
+
+            let bubbles = Math.sin(time/550+30)*500;
+            my_sprite9.x = bubbles;
+
+            let gold = Math.sin(time/550+30)*300;
+            my_sprite5.y = gold;
+
+            let red = Math.sin(time/550)*500;
+            my_sprite6.x = red;
+
 
             // let time = Date.now();
             // my_container.y = Math.sin(time/900) * 200;

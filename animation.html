@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>All The Fishes</title>
+   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js"></script>  
+
+</head>
+
+<body>
+
+    <script>
+        
+
+        //The App
+        const app = new PIXI.Application({
+            width:2500,
+            height:1400,
+            backgroundColor:0x00a5ff
+        });
+
+        //Give us the view
+        document.body.appendChild(app.view);
+
+          //Our fish: Sprite1
+          const my_sprite = PIXI.Sprite.from("img/fish.png");
+            my_sprite.scale.set(.5);
+            my_sprite.x = 250;
+            my_sprite.y = 250;
+            my_sprite.scale.set(.3);
+            my_sprite.tint = 0x00ff00;
+            my_sprite.anchor.set(.9,0);
+            my_sprite.angle = 37;
+
+        //Add it to the stage
+        app.stage.addChild(my_sprite);
+
+        my_container.addChild(my_sprite2);
+
+        //Basic Animation Loop
+        function animationLoop() {
+
+            let time = Date.now();
+
+            let woble1 = Math.sin(time/1000)*20;
+            let woble2 = Math.sin(time/700)*20;
+
+        }
+
+        let Animate = {};
+
+        Animate.to = function(obj,end) {
+            return new Promise( (resolve,reject) => {
+                
+            var start = {
+                x : obj.x,
+                y : obj.y
+            }
+
+            //Set some defaults
+            if (end.duration == undefined) end.duration = 0;
+            if (end.easing == undefined) end.easing = Animate.linear;
+
+            var startTime = Date.now();
+
+            function loop() {
+
+                //Calculate Our Data
+                let ticker = Date.now() = startTime;
+                let delta = ticker/end.duration;
+                let ease = end.easing(delta);
+
+                if (delta >= 1) {
+                    obj.x = end.x;
+                    obj.y = end.y;
+                    console.log("Done!");
+
+                    resolve();
+                    return;
+                }
+                //Interpolation function
+                let lerp = (a, b, n) => {
+                    return (1 - n) * a + n * b
+                }
+                //Interpolate (lerp) our x coordinate
+                obj.x = lerp(start.x, end.x, ease);
+
+                //Lerp our y coordinate
+                obj.y = lerp(start.y,end.y,ease)
+
+                //Start the loop going!
+                obj.animationID = requestAnimationFrame(loop);
+
+                //The Animation ID
+                cancelanimationFrame(obj.animationID);
+
+                loop();
+            }
+
+            });
+        };
+
+        function
+
+        let moveAround = async () => {
+            Animate.to(fish1, {x:0,y:0,duration:1000});
+            await Animate.to(fish1, {x:0,y:300,duration:1000});
+            await Animate.to(fish1, {x:300,y:0,duration:1000});
+            moveAround();
+        };
+
+Animate.stop

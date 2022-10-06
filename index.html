@@ -4,29 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animation.css">
     <title>All The Fishes</title>
    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js"></script>  
+
 <style>
     #div1 {
-        width: 350px;
-        height: 70px;
+        width: 400px;
+        height: 100px;
         padding: 10px;
-        border: 1px solid #aaaaaa;
+        border: 4px solid #aaaaaa;
         background-color:blueviolet;
     }
 </style>
 </head>
 
 <body>
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <button class="glow-on-hover">CLICK!</button>
+    </div>
+        
+    </png>
 
-    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<img id="drag1" src="img/fish2.png" draggable="true" ondragstart="drag(event)" width="336" height="100">
 
-<img id="drag1" src="img/fish2.png" draggable="true" ondragstart="drag(event)" width="336" height="69">
-
-<div class=""></div>
     <script>
 
         function allowDrop(ev) {
@@ -47,7 +50,7 @@
         //The App
         const app = new PIXI.Application({
             width:2500,
-            height:1400,
+            height:3400,
             backgroundColor:0x00a5ff
         });
 
@@ -74,12 +77,9 @@
             my_sprite2.y = 100;
             my_sprite2.scale.set(-.2, -.3);
             my_sprite2.tint = 0xffa500 * Math.random();
-            my_sprite2.anchor.set(.9,0);
+            // my_sprite2.anchor.set(.9,0);
             my_sprite2.angle = 150;
-            my_sprite2.on("pointertap",(e) => {
-                let color = 0xFFFFFF * Math.random();
-            });
-    
+            my_sprite2.button = true;
             
         //Add it to the stage
         app.stage.addChild(my_sprite2);
@@ -96,20 +96,6 @@
 
         //Add it to the stage
         app.stage.addChild(my_sprite3);
-        
-
-        // // Bubbles3: Sprite4
-        // const my_sprite4 = PIXI.Sprite.from("img/leafs.png");
-        // my_sprite4.scale.set(0);
-        // my_sprite4.x = 900;
-        // my_sprite4.y = 600;
-        //     my_sprite4.scale.set(-.1,-.5);
-        //     my_sprite4.tint = 0xee82ee;
-        //     my_sprite4.anchor.set(-.12,1);
-        //     my_sprite4.angle = 300;
-
-        // //Add Bubbles to the Stage
-        // app.stage.addChild(my_sprite4);
 
         //4th Fish: Sprite5
         const my_sprite5 = PIXI.Sprite.from("img/fish4.png");
@@ -138,20 +124,6 @@
 
         //Add it to the stage
         app.stage.addChild(my_sprite6);
-
-        // //Fish Bowl: Sprite7
-        // const my_sprite7 = PIXI.Sprite.from("img/fishbowl2.png");
-        // my_sprite7.scale.set(0);
-        // my_sprite7.x = 20;
-        // my_sprite7.y = 100;
-        // my_sprite7.scale.set(-.900,-.900);
-        // my_sprite7.anchor.set(.1000,.3000);
-        // my_sprite7.angle = 190;
-        // my_sprite7.width = 7000;
-        // my_sprite7.height = 5000;
-
-        // //Add it to the stage
-        // app.stage.addChild(my_sprite7);
 
          //Bubbles: Sprite8
         const my_sprite8 = PIXI.Sprite.from("img/bubbles.png");
@@ -192,20 +164,19 @@
 
         //Add fish to container 
         my_container.addChild(my_sprite);
-        // my_container.addChild(my_sprite2);
+        my_container.addChild(my_sprite2);
         my_container.addChild(my_sprite3);
-        // my_container.addChild(my_sprite4);
         my_container.addChild(my_sprite5);
         my_container.addChild(my_sprite6);
-        // my_container.addChild(my_sprite7);
         my_container.addChild(my_sprite8);
         my_container.addChild(my_sprite9);
 
         let loop = () => {
-
-            
-
+ 
+ 
+         //Make Button
         function makeButton() {
+
 
         //Build a Container
         let ourButton = new PIXI.Container();
@@ -275,12 +246,12 @@
 
         app.stage.addChild(button);
 
-        let my_sprite2 = makeButton();
-        my_sprite2.x = 500;
-        my_sprite2.y = 800;
-        my_sprite2.label.text = "Button#2";
+        // let my_sprite2 = makeButton();
+        // my_sprite2.x = 500;
+        // my_sprite2.y = 800;
+        // my_sprite2.label.text = "Button#2";
 
-        app.stage.addChild(my_sprite2);
+        // app.stage.addChild(my_sprite2);
 
         function makeToggle() {
 
@@ -295,9 +266,6 @@
 
                     if (myButton.isOn) myButton.body.tint = 0x00FF00;
                     else myButton.body.tint = 0xFF0000;
-
-                    
-
                 });
 
                 return myButton;
@@ -367,7 +335,6 @@
         return ourButton;
 
         }
-        
 
         //Create Slider
         let ourSlider = makeSlider();
@@ -384,8 +351,8 @@
             let orange = Math.sin(time/900+200)*500;
             my_sprite.x = orange;
 
-            let green = draggable = true
-            my_sprite2.y = green;
+            // let green = draggable = true
+            // my_sprite2.y = green;
 
             let purple = Math.sin(time/650+30)*500;
             my_sprite3.x = purple;
@@ -417,7 +384,7 @@
 
         loop();
 
-        //Basic animation loop!
+            //Basic animation loop!
     function animationLoop() {
 
 let time = Date.now();
@@ -432,23 +399,39 @@ my_sprite.y = wobble2 + 300;
 requestAnimationFrame(animationLoop);
 }
 
+//animationLoop();
+
+/*
+
+However this animation loop doesn't do too terribly much. 
+
+Both fish are "entangled" and cannot move independently of the one time variable.
+
+How can we fix this?
+
+We can create some kind of independent animation system for each of them.
+
+We'll call it Animate.
+
+*/
+
 let Animate = {};   //Just a blank object for now.
 
 /*
-        Just like our loop, we need to have a few things in mind:
+Just like our loop, we need to have a few things in mind:
 
-        • duration - how long the animation takes
-        • start parameters - the state the object begins in
-        • end parameters - the state the object ends at
-        • delta - how far along we are in the animation
+• duration - how long the animation takes
+• start parameters - the state the object begins in
+• end parameters - the state the object ends at
+• delta - how far along we are in the animation
 
-        We refer to these things collectively as the "timing model."
+We refer to these things collectively as the "timing model."
 
-        Applying the timing model to our objects gives us our "animation model" and thus the animation. :-)
+Applying the timing model to our objects gives us our "animation model" and thus the animation. :-)
 
-    */
+*/
 
-    Animate.to = function(obj,end) {
+Animate.to = function(obj,end) {
 
 //Make it a promise:
 return new Promise( (resolve,reject) => {
@@ -480,7 +463,6 @@ return new Promise( (resolve,reject) => {
         if (delta >= 1 || end.duration === 0) {
             obj.x = end.x;
             obj.y = end.y;
-            console.log("Done!");
             
             resolve();
             return;
@@ -704,31 +686,31 @@ Then we can chain animations with .then() or inside an async function we can awa
 And we can loop chains of animations by creating asynchronous functions that call themselves at the end.
 
 */ 
-    async function idleSwim1() {
-        await Animate.to(fish1,{
-            x:300,y:320,
-            duration:2000,
-            easing:Animate.easeInOut
+    async function idleSwim1(my) {
+        await Animate.to(my_sprite,{
+            x:200,y:-300,
+            duration:2500,
+            scale:Animate.linear
         });
-        await Animate.to(fish1,{
+        await Animate.to(my_sprite,{
             x:300,y:280,
-            duration:2000,
-            easing:Animate.easeInOut
+            duration:4000,
+            function:Animate.easeInOut
         });
         idleSwim1();
     }
     idleSwim1();
 
-    async function idleSwim2() {
-        await Animate.to(fish2,{
-            x:300,y:30,
-            duration:1200,
-            easing:Animate.easeInOut
+    async function idleSwim2(my) {
+        await Animate.to(my_sprite2,{
+            x:300,y:-60,
+            duration:1000,
+            tint:Animate.easeInOut
         });
-        await Animate.to(fish2,{
-            x:300,y:0,
-            duration:1200,
-            easing:Animate.easeInOut
+        await Animate.to(my_sprite2,{
+            x:300,y:-110,
+            duration:2200,
+            onClick:Animate.easeInOut
         });
         idleSwim2();
     }
@@ -770,7 +752,51 @@ cancelAnimationFrame(obj.animationID);
 //Begin the loop!
 loop();
 
+// Call changeImage() function on button click
+function changeImage(){
+if(currentImgIdx >= images.length){
+currentImgIdx = 0;
+// If current idx exceeds images array
+// length, reset it to 0 again
+}
+img.src = images[currentImgIdx];
+currentImgIdx++;
+// Increment current image idx by 1
+}
+
+
+
+var circle = document.querySelector("#circle");
+
+var xPos = 0;
+var yPos = 0;
+var angle = 0;
+
+function animate() {
+xPos += 10;
+angle += .1;
+
+yPos = Math.round(50 * Math.sin(angle));
+
+circle.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+
+if (Math.abs(xPos) >= 900) {
+xPos = -500;
+}
+
+if (angle > 2 * Math.PI) {
+angle = 0;
+}
+
+requestAnimationFrame(animate);
+}
+animate();
+
+
 };
+
+
+
 
 /*
 

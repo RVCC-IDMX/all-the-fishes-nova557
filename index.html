@@ -177,23 +177,24 @@
          //Make Button
         function makeButton() {
 
-
         //Build a Container
         let ourButton = new PIXI.Container();
             ourButton.interactive = true;
 
          //Create button body
-            let buttonBody = new PIXI.Graphics();
-                buttonBody.beginFill(0xEEEEEE);
-                buttonBody.drawRect(0, 0, 200, 100);
+            let buttonBody = new PIXI.Sprite.from("img/fish2.png");
+                buttonBody.scale.set(.2, .2);
+                buttonBody.x = 100;
+                buttonBody.y = 50;
+    
                 ourButton.addChild(buttonBody);
-
                 ourButton.body = buttonBody;
 
-            let buttonText = new PIXI.Text('Button#1');
+            let buttonText = new PIXI.Text();
                 buttonText.anchor.set(.5,.5);
                 buttonText.x = buttonBody.width/2;
                 buttonText.y = buttonBody.height/2;
+
                 ourButton.addChild(buttonText);
 
                 ourButton.label = buttonText;
@@ -204,6 +205,7 @@
                 console.log(e);
                 let color = 0xFFFFFF * Math.random();
                 buttonBody.tint = color;
+                ourButton.x = e.data.global.x * Math.random();
             });
             //Hover listeners
             ourButton.on("pointerover",function (e) {
@@ -245,6 +247,8 @@
             
 
         app.stage.addChild(button);
+
+        
 
         // let my_sprite2 = makeButton();
         // my_sprite2.x = 500;
